@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+  <head>
+    <meta charset="utf-8">
+    <title>MEAN Tea Shopping Cart</title>
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body ng-controller="MainController" ng-cloak ng-init="initCategories()">
+    <header>
+      <p>Welcome to MEAN Tea!</p>
+    </header>
+    <main>
+      <label>Search by category:
+        <select>
+          <option ng-repeat="category in categories">{{category}}</option>
+        </select>
+      </label>
+      <label>Search by name:
+        <input type="text">
+      </label>
+      <button>Checkout | Bag: Empty</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Tea</th>
+            <th>
+              <div class="tableheaderleft">
+                Information
+              </div>
+              <div class="tableheaderright">
+                <label>Sort by price:
+                  <select>
+                    <option>Lowest</option>
+                    <option>Highest</option>
+                  </select>
+                </label>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody ng-repeat="tea in teas">
+          <tr>
+            <td>
+              <img src="{{tea.imageUrl}}">
+            </td>
+            <td>
+              <h3>{{tea.name}}</h3><br>
+              <strong>Price:</strong> {{tea.price}}<br>
+              <strong>Caffeine scale:</strong> {{tea.caffeineScale}}<br>
+              <strong>Ingredients:</strong> {{tea.ingredients}}<br>
+              <strong>Rating:</strong> {{tea.rating}}<br>
+              <strong>In stock?</strong> {{tea.inStock}}<br>
+              <strong>Categories:</strong>
+              <ul ng-repeat="category in tea.categories">
+                <li>{{category}}</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+    <script type="text/javascript" src="https://code.angularjs.org/1.5.0/angular.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/controllers/main_controller.js"></script>
+  </body>
+</html>

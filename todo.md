@@ -1,0 +1,6 @@
+- Format currenty display.
+- Get searching working by category.
+- Get searching working by name.
+- Get sorting working by price.
+- Add button to add item to cart and get cart working.
+- CSS.
