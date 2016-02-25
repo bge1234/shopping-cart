@@ -1,3 +1,3 @@
-- Add button to add item to cart and get cart working.
+- Fix addToBag quantity.
 - Create checkout page.
 - CSS.

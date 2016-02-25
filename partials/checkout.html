@@ -1,0 +1,33 @@
+<div>
+  {{bag}}
+</div>
+
+<table ng-init="checkout()">
+  <thead>
+    <tr>
+      <th>Tea</th>
+      <th>
+        Information
+      </th>
+    </tr>
+  </thead>
+  <tbody ng-repeat="bagtea in bag">
+    <tr>
+      <td>
+        <img src="{{bagtea.tea.imageUrl}}">
+      </td>
+      <td>
+        <h3>{{bagtea.tea.name}}</h3><br>
+        <strong>Price:</strong> {{bagtea.tea.price/100 | currency}}<br>
+        <strong>Caffeine scale:</strong> {{bagtea.tea.caffeineScale}}<br>
+        <strong>Ingredients:</strong> {{bagtea.tea.ingredients}}<br>
+        <strong>Rating:</strong> {{bagtea.tea.rating}}<br>
+        <strong>In stock?</strong> {{bagtea.tea.inStock}}<br>
+        <strong>Categories:</strong>
+        <ul ng-repeat="category in bagtea.tea.categories">
+          <li>{{category}}</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

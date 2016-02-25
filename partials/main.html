@@ -1,0 +1,64 @@
+<label ng-init="initCategories()">Search by category:
+  <select ng-model="categorysearch.categories">
+    <option ng-repeat="category in categories">{{category}}</option>
+  </select>
+</label>
+<label>Search by name:
+  <input type="text" ng-model="namesearch.name">
+</label>
+<button ng-click="checkout()" ng-show="bag.length === 0">Checkout | Bag: Empty</button>
+<a href="/#/checkout"><button ng-click="checkout()" ng-show="bag.length > 0">Checkout | Bag: ({{bag.length}})</button></a>
+<table>
+  <thead>
+    <tr>
+      <th>Tea</th>
+      <th>
+        Information
+      </th>
+        <th>
+        <label>Sort by price:
+          <select ng-model="sorter">
+            <option value="price">Lowest</option>
+            <option value="-price">Highest</option>
+          </select>
+        </label>
+      </th>
+    </tr>
+  </thead>
+  <tbody ng-repeat="tea in teas | filter:namesearch | filter:categorysearch | orderBy:sorter">
+    <tr>
+      <td>
+        <img src="{{tea.imageUrl}}">
+      </td>
+      <td>
+        <h3>{{tea.name}}</h3><br>
+        <strong>Price:</strong> {{tea.price/100 | currency}}<br>
+        <strong>Caffeine scale:</strong> {{tea.caffeineScale}}<br>
+        <strong>Ingredients:</strong> {{tea.ingredients}}<br>
+        <strong>Rating:</strong> {{tea.rating}}<br>
+        <strong>In stock?</strong> {{tea.inStock}}<br>
+        <strong>Categories:</strong>
+        <ul ng-repeat="category in tea.categories">
+          <li>{{category}}</li>
+        </ul>
+      </td>
+      <td>
+        <form>
+          <select ng-model="quantity">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <button ng-click="addToBag(tea)">Add to bag</button>
+        </form>
+      </td>
+    </tr>
+  </tbody>
+</table>

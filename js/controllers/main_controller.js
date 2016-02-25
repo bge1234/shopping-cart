@@ -147,15 +147,17 @@ app.controller('MainController', function ($scope) {
       $scope.quantity = 1;
 
     var newTea = {
-      id: tea._id,
+      tea: tea,
       quantity: $scope.quantity
     };
     $scope.bag.push(newTea);
     $scope.quantity = null;
   }
 
-  $scope.addToBag = function(tea) {
-
+  $scope.checkout = function(tea) {
+    for (var i = 0; i < $scope.bag.length; i++) {
+      console.log($scope.bag[i]["tea"]);
+    }
   }
 
 });
