@@ -45,7 +45,7 @@
             </td>
             <td>
               <h3>{{tea.name}}</h3><br>
-              <strong>Price:</strong> {{tea.price}}<br>
+              <strong>Price:</strong> {{tea.price/100 | currency}}<br>
               <strong>Caffeine scale:</strong> {{tea.caffeineScale}}<br>
               <strong>Ingredients:</strong> {{tea.ingredients}}<br>
               <strong>Rating:</strong> {{tea.rating}}<br>
