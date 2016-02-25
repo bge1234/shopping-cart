@@ -1,3 +1,4 @@
+- Get content to display on checkout page.
+- Change checkout page to match example.
 - Fix addToBag quantity.
-- Create checkout page.
 - CSS.

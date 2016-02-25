@@ -6,8 +6,10 @@
 <label>Search by name:
   <input type="text" ng-model="namesearch.name">
 </label>
-<button ng-click="checkout()" ng-show="bag.length === 0">Checkout | Bag: Empty</button>
-<a href="/#/checkout"><button ng-click="checkout()" ng-show="bag.length > 0">Checkout | Bag: ({{bag.length}})</button></a>
+<p>Stuff</p>
+<button ng-show="bag.length === undefined">Checkout | Bag: Empty</button>
+<a href="/#/checkout"><button ng-show="bag.length > 0">Checkout | Bag: ({{bag.length}})</button></a>
+<button ng-click="emptyBag()" ng-show="bag.length > 0">Empty bag</button>
 <table>
   <thead>
     <tr>

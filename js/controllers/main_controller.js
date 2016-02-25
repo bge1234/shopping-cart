@@ -123,7 +123,10 @@ app.controller('MainController', function ($scope) {
     }
   ];
   $scope.categories = [];
-  $scope.bag = [];
+  $scope.bag = [{
+    tea: "tea",
+    quantity: "$scope.quantity"
+  }];
 
   $scope.initCategories = function() {
     for (var i = 0; i < $scope.teas.length; i++) {
@@ -139,6 +142,8 @@ app.controller('MainController', function ($scope) {
           $scope.categories.push($scope.teas[i]["categories"][j]);
       }
     }
+
+    $scope.bag = JSON.parse(localStorage.getItem('bag'));
   }
 
   $scope.addToBag = function(tea) {
@@ -152,12 +157,14 @@ app.controller('MainController', function ($scope) {
     };
     $scope.bag.push(newTea);
     $scope.quantity = null;
+    localStorage.setItem('bag', JSON.stringify($scope.bag));
   }
 
-  $scope.checkout = function(tea) {
-    for (var i = 0; i < $scope.bag.length; i++) {
-      console.log($scope.bag[i]["tea"]);
-    }
+  $scope.emptyBag = function() {
+    localStorage.clear('bag');
   }
 
+  $scope.checkout = function() {
+    $scope.bag = JSON.parse(localStorage.getItem('bag'));localStorage.clear();
+  }
 });
