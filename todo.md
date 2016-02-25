@@ -1,2 +1,3 @@
 - Add button to add item to cart and get cart working.
+- Create checkout page.
 - CSS.

@@ -123,6 +123,7 @@ app.controller('MainController', function ($scope) {
     }
   ];
   $scope.categories = [];
+  $scope.bag = [];
 
   $scope.initCategories = function() {
     for (var i = 0; i < $scope.teas.length; i++) {
@@ -138,6 +139,23 @@ app.controller('MainController', function ($scope) {
           $scope.categories.push($scope.teas[i]["categories"][j]);
       }
     }
+  }
+
+  $scope.addToBag = function(tea) {
+    console.log("Quantity = " + $scope.quantity);
+    if ($scope.quantity === undefined || $scope.quantity === null)
+      $scope.quantity = 1;
+
+    var newTea = {
+      id: tea._id,
+      quantity: $scope.quantity
+    };
+    $scope.bag.push(newTea);
+    $scope.quantity = null;
+  }
+
+  $scope.addToBag = function(tea) {
+
   }
 
 });
