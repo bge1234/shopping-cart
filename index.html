@@ -11,12 +11,12 @@
     </header>
     <main>
       <label>Search by category:
-        <select>
+        <select ng-model="categorysearch.categories">
           <option ng-repeat="category in categories">{{category}}</option>
         </select>
       </label>
       <label>Search by name:
-        <input type="text">
+        <input type="text" ng-model="namesearch.name">
       </label>
       <button>Checkout | Bag: Empty</button>
       <table>
@@ -29,16 +29,16 @@
               </div>
               <div class="tableheaderright">
                 <label>Sort by price:
-                  <select>
-                    <option>Lowest</option>
-                    <option>Highest</option>
+                  <select ng-model="sorter">
+                    <option value="price">Lowest</option>
+                    <option value="-price">Highest</option>
                   </select>
                 </label>
               </div>
             </th>
           </tr>
         </thead>
-        <tbody ng-repeat="tea in teas">
+        <tbody ng-repeat="tea in teas | filter:namesearch | filter:categorysearch | orderBy:sorter">
           <tr>
             <td>
               <img src="{{tea.imageUrl}}">
