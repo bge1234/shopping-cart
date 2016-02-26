@@ -1,30 +1,33 @@
 <button onclick="history.back(-1)">Return to shop</button>
+<h3>My shopping bag</h3>
+<h3>Total: {{cost/100 | currency}}</h3>
 <table ng-init="checkout()">
   <thead>
     <tr>
-      <th>Tea</th>
-      <th>
-        Information
-      </th>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Subtotal</th>
+      <th>&nbsp;</th>
     </tr>
   </thead>
   <tbody ng-repeat="bagtea in bag">
     <tr>
       <td>
-        <img src="{{bagtea.tea.imageUrl}}">
-      </td>
-      <td>
         <h3>{{bagtea.tea.name}}</h3><br>
-        <strong>Price:</strong> {{bagtea.tea.price/100 | currency}}<br>
+        <img src="{{bagtea.tea.imageUrl}}"><br>
         <strong>Caffeine scale:</strong> {{bagtea.tea.caffeineScale}}<br>
         <strong>Ingredients:</strong> {{bagtea.tea.ingredients}}<br>
         <strong>Rating:</strong> {{bagtea.tea.rating}}<br>
-        <strong>In stock?</strong> {{bagtea.tea.inStock}}<br>
-        <strong>quantity:</strong> {{bagtea.quantity}}<br>
-        <strong>Categories:</strong>
-        <ul ng-repeat="category in bagtea.tea.categories">
-          <li>{{category}}</li>
-        </ul>
+      </td>
+      <td>
+        {{bagtea.quantity}}
+      </td>
+      <td>
+        {{bagtea.quantity * bagtea.tea.price/100 | currency}}
+      </td>
+      <td>
+        <button>Edit</button>
+        <button>Remove</button>
       </td>
     </tr>
   </tbody>

@@ -1,3 +1,4 @@
-- Change checkout page to match example.
-- Fix addToBag quantity.
+- Add count and cost to bag object instead of being separate.
+- Get checkout edit and remove buttons working.
+- Fix addToBag quantity coming in from index.html.
 - CSS.
