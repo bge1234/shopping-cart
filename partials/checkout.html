@@ -1,4 +1,5 @@
-<button onclick="history.back(-1)">Return to shop</button>
+<button onclick="history.back(-1)">Continue shopping</button>
+<a href="/#/"><button ng-click="emptyBag()" ng-show="bag.length > 0">Empty bag</button></a>
 <h3>My shopping bag</h3>
 <h3>Total: {{cost/100 | currency}}</h3>
 <table ng-init="checkout()">

@@ -1,4 +1,4 @@
-- Add count and cost to bag object instead of being separate.
-- Get checkout edit and remove buttons working.
+- Get checkout remove button working.
+- Get checkout edit button working.
 - Fix addToBag quantity coming in from index.html.
 - CSS.
