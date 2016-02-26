@@ -34,7 +34,8 @@ app.service('bagService', [function(){
       if(!found) {
         var newTea = {
           tea: tea,
-          quantity: quantity
+          quantity: quantity,
+          editing: false
         };
         this.bagContents.push(newTea);
         this.itemCount += quantity;
@@ -54,8 +55,10 @@ app.service('bagService', [function(){
       if(this.bagContents.length === 0)
         history.back(-1);
     },
-    editItemQuantity: function(index, editingLineItem, newQuantity) {
-      if(!editingLineItem) {
+    editItemQuantity: function(index, newQuantity) {
+      this.bagContents[index]["editing"] = !this.bagContents[index]["editing"];
+
+      if(!this.bagContents[index]["editing"]) {
         if(newQuantity !== undefined && newQuantity !== null && newQuantity > 0) {
 
           if(newQuantity > this.bagContents[index]["quantity"]) {

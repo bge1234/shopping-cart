@@ -20,7 +20,6 @@ app.controller("CheckoutController", ["$scope", "bagService", function($scope, b
   }
 
   $scope.editLineItem = function(index) {
-    $scope.editingLineItem = !$scope.editingLineItem;
-    bagService.editItemQuantity(index, $scope.editingLineItem, $scope.newQuantity);
+    bagService.editItemQuantity(index, $scope.newQuantity);
   }
 }]);

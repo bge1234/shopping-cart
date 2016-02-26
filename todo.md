@@ -1,4 +1,3 @@
-- Get edit button to edit only the item in question and not all of them.
 - Fix checkout button count not updating until going to checkout page and back again.
-- Fix quantity links between html pages and addToBag and editLineItem functions.
+- Fix ng-model/$scope quantities between html pages and addToBag/editLineItem.
 - CSS.
