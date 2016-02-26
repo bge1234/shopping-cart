@@ -1,4 +1,4 @@
-- Get checkout remove button working.
-- Get checkout edit button working.
-- Fix addToBag quantity coming in from index.html.
+- Use services instead of local storage.
+- Separate checkout functions into checkout_controller.js.
+- Fix quantity links between html pages and addToBag and editLineItem functions.
 - CSS.

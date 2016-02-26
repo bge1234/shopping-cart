@@ -20,14 +20,14 @@
         <strong>Ingredients:</strong> {{bagtea.tea.ingredients}}<br>
         <strong>Rating:</strong> {{bagtea.tea.rating}}<br>
       </td>
-      <td>
-        {{bagtea.quantity}}
-      </td>
+      <td ng-show="!editingLineItem">{{bagtea.quantity}}</td>
+      <td ng-show="editingLineItem"><input type="text" ng-model="newQuantity" placeholder="New quantity"></td>
       <td>
         {{bagtea.quantity * bagtea.tea.price/100 | currency}}
       </td>
       <td>
-        <button>Edit</button>
+        <button ng-show="!editingLineItem" ng-click="editLineItem($index)">Edit</button>
+        <button ng-show="editingLineItem" ng-click="editLineItem($index)">Save</button>
         <button ng-click="removeLineItem($index)">Remove</button>
       </td>
     </tr>
