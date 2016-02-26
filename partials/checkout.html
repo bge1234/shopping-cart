@@ -26,8 +26,8 @@
         {{bagtea.quantity * bagtea.tea.price/100 | currency}}
       </td>
       <td>
-        <button ng-show="!bagtea.editing" ng-click="editLineItem($index)">Edit</button>
-        <button ng-show="bagtea.editing" ng-click="editLineItem($index)">Save</button>
+        <button ng-show="!bagtea.editing" ng-click="editLineItem($index, {newQuantity: bagtea.quantity})">Edit</button>
+        <button ng-show="bagtea.editing" ng-click="editLineItem($index, this)">Save</button>
         <button ng-click="removeLineItem($index)">Remove</button>
       </td>
     </tr>

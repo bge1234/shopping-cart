@@ -17,10 +17,7 @@ app.service('bagService', [function(){
     bagContents: [],
     itemCount: 0,
     totalCost: 0,
-    addItem: function(tea, quantity) {
-      if (quantity === undefined || quantity === null)
-        quantity = 1;
-
+    addItem: function(tea, addQuantity) {
       var found = false;
       var pos = 0;
 
@@ -34,15 +31,15 @@ app.service('bagService', [function(){
       if(!found) {
         var newTea = {
           tea: tea,
-          quantity: quantity,
+          quantity: addQuantity,
           editing: false
         };
         this.bagContents.push(newTea);
-        this.itemCount += quantity;
-        this.totalCost += quantity * tea.price;
+        this.itemCount += addQuantity;
+        this.totalCost += addQuantity * tea.price;
       }
       else {
-        this.bagContents[pos]["quantity"] += quantity;
+        this.bagContents[pos]["quantity"] += addQuantity;
         this.itemCount++;
         this.totalCost += tea.price;
       }

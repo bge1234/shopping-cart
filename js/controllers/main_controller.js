@@ -147,12 +147,10 @@ app.controller("MainController", ["$scope", "bagService", function($scope, bagSe
     $scope.cost = bagService.totalCost;
   }
 
-  $scope.addToBag = function(tea) {
-    console.log("quantity = " + $scope.quantity);
+  $scope.addToBag = function(thisTea) {
+    thisTea.addQuantity = (thisTea.addQuantity === undefined || thisTea.addQuantity === null) ? 1 : thisTea.addQuantity;
 
-    bagService.addItem(tea, $scope.quantity);
-
-    $scope.quantity = null;
+    bagService.addItem(thisTea.tea, thisTea.addQuantity);
 
     $scope.bag = bagService.bagContents;
     $scope.count = bagService.itemCount;
