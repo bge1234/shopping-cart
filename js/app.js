@@ -4,7 +4,7 @@ app.config(function($routeProvider) {
     $routeProvider
       .when('/checkout', {
         templateUrl: 'partials/checkout.html',
-        controller: 'MainController'
+        controller: 'CheckoutController'
       })
         .when('/', {
           templateUrl: 'partials/main.html',
@@ -18,7 +18,6 @@ app.service('bagService', [function(){
     itemCount: 0,
     totalCost: 0,
     addItem: function(tea, quantity) {
-      console.log("Quantity = " + quantity);
       if (quantity === undefined || quantity === null)
         quantity = 1;
 

@@ -126,7 +126,6 @@ app.controller("MainController", ["$scope", "bagService", function($scope, bagSe
   $scope.bag = bagService.bagContents;
   $scope.count = bagService.itemCount;
   $scope.cost = bagService.totalCost;
-  $scope.editingLineItem = false;
 
   $scope.initCategories = function() {
     for (var i = 0; i < $scope.teas.length; i++) {
@@ -151,25 +150,9 @@ app.controller("MainController", ["$scope", "bagService", function($scope, bagSe
   $scope.addToBag = function(tea) {
     bagService.addItem(tea, $scope.quantity);
     $scope.quantity = null;
-    console.log(bagService);
   }
 
   $scope.emptyBag = function() {
     bagService.emptyBagContents();
-  }
-
-  $scope.checkout = function() {
-    $scope.bag = bagService.bagContents;
-    $scope.count = bagService.itemCount;
-    $scope.cost = bagService.totalCost;
-  }
-
-  $scope.removeLineItem = function(index) {
-    bagService.removeItem(index);
-  }
-
-  $scope.editLineItem = function(index) {
-    $scope.editingLineItem = !$scope.editingLineItem;
-    bagService.editItemQuantity(index, $scope.editingLineItem, $scope.newQuantity);
   }
 }]);
