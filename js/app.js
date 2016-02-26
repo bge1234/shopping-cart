@@ -59,12 +59,12 @@ app.service('bagService', [function(){
         if(newQuantity !== undefined && newQuantity !== null && newQuantity > 0) {
 
           if(newQuantity > this.bagContents[index]["quantity"]) {
-            this.itemCount += newQuantity;
-            this.totalCost += this.bagContents[index]["price"] * newQuantity;
+            this.itemCount = newQuantity;
+            this.totalCost = this.bagContents[index]["price"] * newQuantity;
           }
           else if(newQuantity < this.bagContents[index]["quantity"]) {
-            this.itemCount -= newQuantity;
-            this.totalCost -= this.bagContents[index]["price"] * newQuantity;
+            this.itemCount = newQuantity;
+            this.totalCost = this.bagContents[index]["price"] * newQuantity;
           }
 
           this.bagContents[index]["quantity"] = newQuantity;
