@@ -150,7 +150,7 @@ app.controller("MainController", ["$scope", "bagService", function($scope, bagSe
   $scope.addToBag = function(thisTea) {
     thisTea.addQuantity = (thisTea.addQuantity === undefined || thisTea.addQuantity === null) ? 1 : thisTea.addQuantity;
 
-    bagService.addItem(thisTea.tea, thisTea.addQuantity);
+    bagService.addItem(thisTea.tea, parseInt(thisTea.addQuantity));
 
     $scope.bag = bagService.bagContents;
     $scope.count = bagService.itemCount;

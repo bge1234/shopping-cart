@@ -10,6 +10,10 @@ app.controller("CheckoutController", ["$scope", "bagService", function($scope, b
   }
 
   $scope.checkout = function() {
+    for (var i = 0; i < bagService.bagContents.length; i++) {
+      bagService.bagContents[i]["editing"] = false;
+    }
+
     $scope.bag = bagService.bagContents;
     $scope.count = bagService.itemCount;
     $scope.cost = bagService.totalCost;
@@ -21,5 +25,9 @@ app.controller("CheckoutController", ["$scope", "bagService", function($scope, b
 
   $scope.editLineItem = function(index, bagtea) {
     bagService.editItemQuantity(index, parseInt(bagtea.newQuantity));
+
+    $scope.bag = bagService.bagContents;
+    $scope.count = bagService.itemCount;
+    $scope.cost = bagService.totalCost;
   }
 }]);

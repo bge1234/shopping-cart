@@ -40,7 +40,7 @@ app.service('bagService', [function(){
       }
       else {
         this.bagContents[pos]["quantity"] += addQuantity;
-        this.itemCount++;
+        this.itemCount += addQuantity;
         this.totalCost += tea.price;
       }
     },
@@ -57,16 +57,8 @@ app.service('bagService', [function(){
 
       if(!this.bagContents[index]["editing"]) {
         if(newQuantity !== undefined && newQuantity !== null && newQuantity > 0) {
-
-          if(newQuantity > this.bagContents[index]["quantity"]) {
-            this.itemCount = newQuantity;
-            this.totalCost = this.bagContents[index]["price"] * newQuantity;
-          }
-          else if(newQuantity < this.bagContents[index]["quantity"]) {
-            this.itemCount = newQuantity;
-            this.totalCost = this.bagContents[index]["price"] * newQuantity;
-          }
-
+          this.itemCount = this.itemCount - this.bagContents[index]["quantity"] + newQuantity;
+          this.totalCost = this.totalCost - (this.bagContents[index]["tea"]["price"] * this.bagContents[index]["quantity"]) + (this.totalCost = this.bagContents[index]["tea"]["price"] * newQuantity);
           this.bagContents[index]["quantity"] = newQuantity;
         }
       }
