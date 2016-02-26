@@ -197,4 +197,33 @@ app.controller('MainController', function ($scope) {
     $scope.count = JSON.parse(localStorage.getItem('count'));
     $scope.cost = JSON.parse(localStorage.getItem('cost'));
   }
+
+  $scope.removeLineItem = function(index) {
+    $scope.bag = JSON.parse(localStorage.getItem('bag'));
+    $scope.count = JSON.parse(localStorage.getItem('count'));
+    $scope.cost = JSON.parse(localStorage.getItem('cost'));
+
+    var newBag = [];
+    var subtractQuantity = 0;
+    var subtractPrice = 0;
+
+    for (var i = 0; i < $scope.bag.length; i++) {
+      if(i !== index) {
+        newBag.push($scope.bag[i]);
+        subtractQuantity = $scope.bag[i]["quantity"];
+        subtractPrice = $scope.bag[i]["tea"]["price"];
+      }
+    }
+
+    console.log(subtractQuantity);
+    console.log(subtractPrice);
+
+    $scope.bag = newBag;
+    $scope.count -= subtractQuantity;
+    $scope.cost -= subtractPrice * subtractQuantity;
+
+    localStorage.setItem('bag', JSON.stringify($scope.bag));
+    localStorage.setItem('count', JSON.stringify($scope.count));
+    localStorage.setItem('cost', JSON.stringify($scope.cost));
+  }
 });
