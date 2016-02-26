@@ -6,9 +6,8 @@
 <label>Search by name:
   <input type="text" ng-model="namesearch.name">
 </label>
-<p>Stuff</p>
-<button ng-show="bag.length === undefined">Checkout | Bag: Empty</button>
-<a href="/#/checkout"><button ng-show="bag.length > 0">Checkout | Bag: ({{bag.length}})</button></a>
+<button ng-show="bag.length === 0">Checkout | Bag: Empty</button>
+<a href="/#/checkout"><button ng-show="bag.length > 0">Checkout | Bag: ({{count}})</button></a>
 <button ng-click="emptyBag()" ng-show="bag.length > 0">Empty bag</button>
 <table>
   <thead>
@@ -38,7 +37,8 @@
         <strong>Caffeine scale:</strong> {{tea.caffeineScale}}<br>
         <strong>Ingredients:</strong> {{tea.ingredients}}<br>
         <strong>Rating:</strong> {{tea.rating}}<br>
-        <strong>In stock?</strong> {{tea.inStock}}<br>
+        <span ng-show="tea.inStock"><strong>In stock?</strong> Yes</span><br>
+        <span ng-show="!tea.inStock"><strong>In stock?</strong> No</span><br>
         <strong>Categories:</strong>
         <ul ng-repeat="category in tea.categories">
           <li>{{category}}</li>

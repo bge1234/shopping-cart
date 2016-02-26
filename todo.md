@@ -1,5 +1,3 @@
-- Fix addToBag and emptyBag.
-- Get content to display on checkout page without duplicates.
 - Change checkout page to match example.
 - Fix addToBag quantity.
 - CSS.

@@ -123,10 +123,8 @@ app.controller('MainController', function ($scope) {
     }
   ];
   $scope.categories = [];
-  $scope.bag = [{
-    tea: "tea",
-    quantity: "$scope.quantity"
-  }];
+  $scope.bag = [];
+  $scope.count = 0;
 
   $scope.initCategories = function() {
     for (var i = 0; i < $scope.teas.length; i++) {
@@ -144,6 +142,7 @@ app.controller('MainController', function ($scope) {
     }
 
     $scope.bag = JSON.parse(localStorage.getItem('bag'));
+    $scope.count = JSON.parse(localStorage.getItem('count'));
   }
 
   $scope.addToBag = function(tea) {
@@ -151,20 +150,43 @@ app.controller('MainController', function ($scope) {
     if ($scope.quantity === undefined || $scope.quantity === null)
       $scope.quantity = 1;
 
-    var newTea = {
-      tea: tea,
-      quantity: $scope.quantity
-    };
-    $scope.bag.push(newTea);
+    var found = false;
+    var pos = 0;
+
+    for (var i = 0; i < $scope.bag.length; i++) {
+      if(tea["name"] === $scope.bag[i]["tea"]["name"]) {
+        found = true;
+        pos = i;
+      }
+    }
+
+    if(!found) {
+      var newTea = {
+        tea: tea,
+        quantity: $scope.quantity
+      };
+      $scope.bag.push(newTea);
+      $scope.count += $scope.quantity;
+    }
+    else {
+      $scope.bag[pos]["quantity"] += $scope.quantity;
+      $scope.count++;
+    }
+
     $scope.quantity = null;
     localStorage.setItem('bag', JSON.stringify($scope.bag));
+    localStorage.setItem('count', JSON.stringify($scope.count));
   }
 
   $scope.emptyBag = function() {
-    localStorage.clear('bag');
+    $scope.bag = [];
+    $scope.count = 0;
+    localStorage.setItem('bag', JSON.stringify($scope.bag));
+    localStorage.setItem('count', JSON.stringify($scope.count));
   }
 
   $scope.checkout = function() {
-    $scope.bag = JSON.parse(localStorage.getItem('bag'));localStorage.clear();
+    $scope.bag = JSON.parse(localStorage.getItem('bag'));
+    $scope.count = JSON.parse(localStorage.getItem('count'));
   }
 });
