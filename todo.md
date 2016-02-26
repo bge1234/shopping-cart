@@ -1,5 +1,4 @@
-- Use services instead of local storage.
-- Write service internal functions for changing count and cost values.
+- Write service internal functions for changing count and cost values, adding or removing to/from bag contents, etc.
 - Separate checkout functions into checkout_controller.js.
 - Fix quantity links between html pages and addToBag and editLineItem functions.
 - CSS.

@@ -1,4 +1,4 @@
-app.controller('MainController', ["bagService"] function ($scope, bagService) {
+app.controller("MainController", ["$scope", "bagService", function($scope, bagService){
   $scope.teas = [
     {
       "_id": "55c8ee82152165d244b98300",
@@ -123,9 +123,9 @@ app.controller('MainController', ["bagService"] function ($scope, bagService) {
     }
   ];
   $scope.categories = [];
-  $scope.bag = [];
-  $scope.count = 0;
-  $scope.cost = 0;
+  $scope.bag = bagService.bagContents;
+  $scope.count = bagService.itemCount;
+  $scope.cost = bagService.totalCost;
   $scope.editingLineItem = false;
 
   $scope.initCategories = function() {
@@ -143,9 +143,9 @@ app.controller('MainController', ["bagService"] function ($scope, bagService) {
       }
     }
 
-    $scope.bag = JSON.parse(localStorage.getItem('bag'));
-    $scope.count = JSON.parse(localStorage.getItem('count'));
-    $scope.cost = JSON.parse(localStorage.getItem('cost'));
+    $scope.bag = bagService.bagContents;
+    $scope.count = bagService.itemCount;
+    $scope.cost = bagService.totalCost;
   }
 
   $scope.addToBag = function(tea) {
@@ -179,38 +179,39 @@ app.controller('MainController', ["bagService"] function ($scope, bagService) {
     }
 
     $scope.quantity = null;
-    localStorage.setItem('bag', JSON.stringify($scope.bag));
-    localStorage.setItem('count', JSON.stringify($scope.count));
-    localStorage.setItem('cost', JSON.stringify($scope.cost));
+    bagService.bagContents = $scope.bag;
+    bagService.itemCount = $scope.count;
+    bagService.totalCost = $scope.cost;
   }
 
   $scope.emptyBag = function() {
     $scope.bag = [];
     $scope.count = 0;
     $scope.cost = 0;
-    localStorage.setItem('bag', JSON.stringify($scope.bag));
-    localStorage.setItem('count', JSON.stringify($scope.count));
-    localStorage.setItem('cost', JSON.stringify($scope.cost));
+
+    bagService.bagContents = $scope.bag;
+    bagService.itemCount = $scope.count;
+    bagService.totalCost = $scope.cost;
   }
 
   $scope.checkout = function() {
-    $scope.bag = JSON.parse(localStorage.getItem('bag'));
-    $scope.count = JSON.parse(localStorage.getItem('count'));
-    $scope.cost = JSON.parse(localStorage.getItem('cost'));
+    $scope.bag = bagService.bagContents;
+    $scope.count = bagService.itemCount;
+    $scope.cost = bagService.totalCost;
   }
 
   $scope.removeLineItem = function(index) {
-    $scope.bag = JSON.parse(localStorage.getItem('bag'));
-    $scope.count = JSON.parse(localStorage.getItem('count'));
-    $scope.cost = JSON.parse(localStorage.getItem('cost'));
+    $scope.bag = bagService.bagContents;
+    $scope.count = bagService.itemCount;
+    $scope.cost = bagService.totalCost;
 
     $scope.count -= $scope.bag[index]["quantity"];
     $scope.cost -= $scope.bag[index]["tea"]["price"] * $scope.bag[index]["quantity"];
     $scope.bag.splice(index, 1);
 
-    localStorage.setItem('bag', JSON.stringify($scope.bag));
-    localStorage.setItem('count', JSON.stringify($scope.count));
-    localStorage.setItem('cost', JSON.stringify($scope.cost));
+    bagService.bagContents = $scope.bag;
+    bagService.itemCount = $scope.count;
+    bagService.totalCost = $scope.cost;
 
     if($scope.bag.length === 0)
       history.back(-1);
@@ -220,17 +221,17 @@ app.controller('MainController', ["bagService"] function ($scope, bagService) {
     $scope.editingLineItem = !$scope.editingLineItem;
 
     if(!$scope.editingLineItem) {
-      $scope.bag = JSON.parse(localStorage.getItem('bag'));
-      $scope.count = JSON.parse(localStorage.getItem('count'));
-      $scope.cost = JSON.parse(localStorage.getItem('cost'));
+      $scope.bag = bagService.bagContents;
+      $scope.count = bagService.itemCount;
+      $scope.cost = bagService.totalCost;
 
       if($scope.newQuantity !== undefined && $scope.newQuantity !== null && $scope.newQuantity > 0) {
         $scope.bag[index]["quantity"] = $scope.newQuantity;
 
-        localStorage.setItem('bag', JSON.stringify($scope.bag));
-        localStorage.setItem('count', JSON.stringify($scope.count));
-        localStorage.setItem('cost', JSON.stringify($scope.cost));
+        bagService.bagContents = $scope.bag;
+        bagService.itemCount = $scope.count;
+        bagService.totalCost = $scope.cost;
       }
     }
   }
-});
+}]);

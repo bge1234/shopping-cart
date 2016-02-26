@@ -14,8 +14,20 @@ app.config(function($routeProvider) {
 
 app.service('bagService', [function(){
   return {
-    contents: [],
-    count: 0,
-    cost: 0
+    bagContents: [],
+    itemCount: 0,
+    totalCost: 0,
+    addItem: function () {
+
+    },
+    removeItem: function() {
+
+    },
+    editItemQuantity: function() {
+
+    },
+    emptyBagContents: function() {
+
+    }
   }
 }])
