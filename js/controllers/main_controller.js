@@ -149,49 +149,13 @@ app.controller("MainController", ["$scope", "bagService", function($scope, bagSe
   }
 
   $scope.addToBag = function(tea) {
-    console.log("Quantity = " + $scope.quantity);
-    if ($scope.quantity === undefined || $scope.quantity === null)
-      $scope.quantity = 1;
-
-    var found = false;
-    var pos = 0;
-
-    for (var i = 0; i < $scope.bag.length; i++) {
-      if(tea["name"] === $scope.bag[i]["tea"]["name"]) {
-        found = true;
-        pos = i;
-      }
-    }
-
-    if(!found) {
-      var newTea = {
-        tea: tea,
-        quantity: $scope.quantity
-      };
-      $scope.bag.push(newTea);
-      $scope.count += $scope.quantity;
-      $scope.cost += $scope.quantity * tea.price;
-    }
-    else {
-      $scope.bag[pos]["quantity"] += $scope.quantity;
-      $scope.count++;
-      $scope.cost += tea.price;
-    }
-
+    bagService.addItem(tea, $scope.quantity);
     $scope.quantity = null;
-    bagService.bagContents = $scope.bag;
-    bagService.itemCount = $scope.count;
-    bagService.totalCost = $scope.cost;
+    console.log(bagService);
   }
 
   $scope.emptyBag = function() {
-    $scope.bag = [];
-    $scope.count = 0;
-    $scope.cost = 0;
-
-    bagService.bagContents = $scope.bag;
-    bagService.itemCount = $scope.count;
-    bagService.totalCost = $scope.cost;
+    bagService.emptyBagContents();
   }
 
   $scope.checkout = function() {
@@ -201,37 +165,11 @@ app.controller("MainController", ["$scope", "bagService", function($scope, bagSe
   }
 
   $scope.removeLineItem = function(index) {
-    $scope.bag = bagService.bagContents;
-    $scope.count = bagService.itemCount;
-    $scope.cost = bagService.totalCost;
-
-    $scope.count -= $scope.bag[index]["quantity"];
-    $scope.cost -= $scope.bag[index]["tea"]["price"] * $scope.bag[index]["quantity"];
-    $scope.bag.splice(index, 1);
-
-    bagService.bagContents = $scope.bag;
-    bagService.itemCount = $scope.count;
-    bagService.totalCost = $scope.cost;
-
-    if($scope.bag.length === 0)
-      history.back(-1);
+    bagService.removeItem(index);
   }
 
   $scope.editLineItem = function(index) {
     $scope.editingLineItem = !$scope.editingLineItem;
-
-    if(!$scope.editingLineItem) {
-      $scope.bag = bagService.bagContents;
-      $scope.count = bagService.itemCount;
-      $scope.cost = bagService.totalCost;
-
-      if($scope.newQuantity !== undefined && $scope.newQuantity !== null && $scope.newQuantity > 0) {
-        $scope.bag[index]["quantity"] = $scope.newQuantity;
-
-        bagService.bagContents = $scope.bag;
-        bagService.itemCount = $scope.count;
-        bagService.totalCost = $scope.cost;
-      }
-    }
+    bagService.editItemQuantity(index, $scope.editingLineItem, $scope.newQuantity);
   }
 }]);

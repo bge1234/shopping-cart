@@ -1,4 +1,5 @@
-- Write service internal functions for changing count and cost values, adding or removing to/from bag contents, etc.
 - Separate checkout functions into checkout_controller.js.
+- Fix checkout button count not updating until going to checkout page and back again.
+- Get edit button to edit only the item in question and not all of them.
 - Fix quantity links between html pages and addToBag and editLineItem functions.
 - CSS.
