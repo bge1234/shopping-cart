@@ -11,3 +11,11 @@ app.config(function($routeProvider) {
           controller: 'MainController'
         })
 });
+
+app.service('bagService', [function(){
+  return {
+    contents: [],
+    count: 0,
+    cost: 0
+  }
+}])

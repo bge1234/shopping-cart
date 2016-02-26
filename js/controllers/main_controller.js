@@ -1,4 +1,4 @@
-app.controller('MainController', function ($scope) {
+app.controller('MainController', ["bagService"] function ($scope, bagService) {
   $scope.teas = [
     {
       "_id": "55c8ee82152165d244b98300",
