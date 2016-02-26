@@ -1,3 +1,0 @@
-- Fix checkout button count not updating until going to checkout page and back again.
-- Fix ng-model/$scope quantities between html pages and addToBag/editLineItem.
-- CSS.
