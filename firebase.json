@@ -1,0 +1,9 @@
+{
+  "firebase": "meantea-benebel",
+  "public": "public",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
