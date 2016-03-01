@@ -1,34 +1,50 @@
-<button onclick="history.back(-1)">Continue shopping</button>
-<a href="/#/"><button ng-click="emptyBag()" ng-show="bag.length > 0">Empty bag</button></a>
-<h3>My shopping bag</h3>
-<h3>Total: {{cost/100 | currency}}</h3>
+<center>
+  <button class="checkoutbutton" onclick="history.back(-1)">Continue shopping</button>
+  <a href="/#/"><button class="checkoutbutton" ng-click="emptyBag()" ng-show="bag.length > 0">Empty bag</button></a>
+</center>
+<h3 class="checkouth3left">My shopping bag</h3>
+<h3 class="checkouth3right">Total: {{cost/100 | currency}}</h3>
 <table ng-init="checkout()">
   <thead>
     <tr>
-      <th>Product</th>
-      <th>Quantity</th>
-      <th>Subtotal</th>
-      <th>&nbsp;</th>
+      <th class="bottomborder">Product</th>
+      <th class="bottomborder">Quantity</th>
+      <th class="bottomborder">Subtotal</th>
+      <th class="bottomborder">&nbsp;</th>
     </tr>
   </thead>
   <tbody ng-repeat="bagtea in bag">
     <tr>
-      <td>
-        <h3>{{bagtea.tea.name}}</h3><br>
-        <img src="{{bagtea.tea.imageUrl}}"><br>
-        <strong>Caffeine scale:</strong> {{bagtea.tea.caffeineScale}}<br>
-        <strong>Ingredients:</strong> {{bagtea.tea.ingredients}}<br>
+      <td class="condense bottomborder leftpadding">
+        <center>
+          <h3>{{bagtea.tea.name}}</h3><br>
+          <img src="{{bagtea.tea.imageUrl}}"><br>
+        </center>
+        <strong>Caffeine scale:</strong> {{bagtea.tea.caffeineScale}}<br><br>
+        <strong>Ingredients:</strong> {{bagtea.tea.ingredients}}<br><br>
         <strong>Rating:</strong> {{bagtea.tea.rating}}<br>
       </td>
-      <td ng-show="!bagtea.editing">{{bagtea.quantity}}</td>
-      <td ng-show="bagtea.editing"><input type="text" ng-model="newQuantity" placeholder="New quantity"></td>
-      <td>
-        {{bagtea.quantity * bagtea.tea.price/100 | currency}}
+      <td class="bottomborder" ng-show="!bagtea.editing">
+        <center>
+          {{bagtea.quantity}}
+        </center>
       </td>
-      <td>
-        <button ng-show="!bagtea.editing" ng-click="editLineItem($index, {newQuantity: bagtea.quantity})">Edit</button>
-        <button ng-show="bagtea.editing" ng-click="editLineItem($index, this)">Save</button>
-        <button ng-click="removeLineItem($index)">Remove</button>
+      <td class="bottomborder" ng-show="bagtea.editing">
+        <center>
+          <input type="text" ng-model="newQuantity" placeholder="New quantity">
+        </center>
+      </td>
+      <td class="bottomborder">
+        <center>
+          {{bagtea.quantity * bagtea.tea.price/100 | currency}}
+        </center>
+      </td>
+      <td class="bottomborder">
+        <center>
+          <button ng-show="!bagtea.editing" ng-click="editLineItem($index, {newQuantity: bagtea.quantity})">Edit</button>
+          <button ng-show="bagtea.editing" ng-click="editLineItem($index, this)">Save</button>
+          <button ng-click="removeLineItem($index)">Remove</button>
+        </center>
       </td>
     </tr>
   </tbody>

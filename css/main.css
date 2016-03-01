@@ -5,3 +5,67 @@
 * {
   margin: 0;
 }
+
+header{
+  height: 50px;
+  width: 100vw;
+  background: darkgray;
+  color: white;
+  padding-top: 10px;
+}
+
+input {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.checkoutbutton {
+  margin-top: 20px;
+}
+
+select, input {
+  margin-right: 10px;
+}
+
+table {
+  margin: 0 auto;
+  width: 60vw;
+  border-spacing: 25px;
+  border-collapse: collapse;;
+  border: black 2px solid;
+  margin-bottom: 10px;
+}
+
+.bottomborder {
+  border-bottom: black 1px solid;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.condense {
+  width: 45%;
+}
+
+.small {
+  font-size: 12px;
+}
+
+.checkouth3left {
+  margin-left: 21vw;
+  margin-bottom: -22px;
+}
+
+.checkouth3right {
+  margin-left: 72vw;
+  margin-bottom: 10px;
+}
+
+.leftpadding {
+  padding-left: 20px;
+}
+
+button {
+  height: 25px;
+  color: black;
+  background: lightgray;
+}
